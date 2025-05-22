@@ -1,3 +1,5 @@
+use log::info;
+
 pub mod messages;
 
 pub struct NRFCloudClient {
@@ -39,6 +41,7 @@ impl NRFCloudClient {
             .send()
             .await?;
 
+        info!("Response: {}", response.status());
         response.error_for_status()?.text().await
     }
 
@@ -66,6 +69,7 @@ impl NRFCloudClient {
             .query(params)
             .send()
             .await?;
+        info!("Response: {}", response.status());
 
         response.error_for_status()?.text().await
     }
@@ -91,6 +95,8 @@ impl NRFCloudClient {
             .header("Authorization", format!("Bearer {}", self.token))
             .send()
             .await?;
+
+        info!("Response: {}", response.status());
 
         response.error_for_status()?.json::<T>().await
     }
@@ -119,6 +125,7 @@ impl NRFCloudClient {
             .query(params)
             .send()
             .await?;
+        info!("Response: {}", response.status());
 
         response.error_for_status()?.json::<T>().await
     }
