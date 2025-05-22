@@ -1,4 +1,4 @@
-mod messages;
+pub mod messages;
 
 pub struct NRFCloudClient {
     client: reqwest::Client,
