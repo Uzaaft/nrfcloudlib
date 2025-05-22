@@ -13,7 +13,7 @@ pub struct ListMessagesParams {
     pub pageSort: Option<String>,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Serialize)]
 pub struct ListMessagesResponse {
     pub items: Option<Vec<serde_json::Value>>,
     pub pageNextToken: Option<String>,
